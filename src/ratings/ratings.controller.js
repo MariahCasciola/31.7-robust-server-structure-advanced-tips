@@ -1,7 +1,15 @@
 const ratings = require("../data/ratings-data");
 
 function list(req, res, next) {
-  res.json({ data: ratings });
+  const { noteId } = req.params;
+  //   console.log("Our note id:", noteId);
+  const data = ratings.filter(
+    noteId ? (rating) => rating.noteId === Number(noteId) : () => true
+  );
+//   console.log(data)
+  res.json({
+    data: data,
+  });
 }
 
 function ratingExists(req, res, next) {
