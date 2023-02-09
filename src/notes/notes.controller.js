@@ -47,16 +47,14 @@ function noteExists(req, res, next) {
 }
 
 function read(req, res) {
-  const noteId = Number(req.params.noteId);
-  const foundNote = notes.find((note) => (note.id = noteId));
-  res.json({ data: foundNote });
+  res.json({ data: res.locals.note });
 }
 
 function update(req, res) {
- const note = res.locals.note
+  const note = res.locals.note;
 
   const { data: { text } = {} } = req.body;
-//updates the note
+  //updates the note
   note.text = text;
 
   res.json({ data: note });
