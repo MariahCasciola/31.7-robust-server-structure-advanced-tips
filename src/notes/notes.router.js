@@ -5,7 +5,7 @@ const controller = require("./notes.controller");
 const ratingsRouter = require("../ratings/ratings.router")
 const methodNotAllowed = require("../errors/methodNotAllowed");
 // this should be added before any other routes, in order to nest routes
-router.use("/:noteId/ratings", ratingsRouter)
+router.use("/:noteId/ratings", controller.noteExists, ratingsRouter)
 
 router
   .route("/:noteId")

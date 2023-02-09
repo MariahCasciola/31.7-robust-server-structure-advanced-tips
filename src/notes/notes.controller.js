@@ -35,6 +35,7 @@ function list(req, res) {
 
 function noteExists(req, res, next) {
   const noteId = Number(req.params.noteId);
+  // console.log("this is noteId", noteId)
   const foundNote = notes.find((note) => note.id === noteId);
   if (foundNote) {
     res.locals.note = foundNote;
@@ -66,4 +67,5 @@ module.exports = {
   read: [noteExists, read],
   update: [noteExists, hasText, update],
   delete: destroy,
+  noteExists,
 };
